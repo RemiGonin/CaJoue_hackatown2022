@@ -1,1 +1,6 @@
 /cajoue_backend/data.db
+/cajoue_backend/__pycache__/
+/cajoue_backend/venv/
+/cajoue_backend/sql_app/__pycache__/
+.idea/
+/cajoue_backend/.idea/
