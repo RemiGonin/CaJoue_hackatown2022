@@ -56,12 +56,23 @@ async def cajoue_plus_patinoire(patinoire_id: int, db: Session = Depends(get_db)
     else:
         raise HTTPException(status_code=400, detail="Patinoire not found with the given ID")
 
+@app.post('/patinoires', tags=["Patinoire"], response_model=schemas.Patinoire, status_code=201)
+async def create_patinoire(patinoire_request: schemas.PatinoireCreate, db: Session = Depends(get_db)):
+    """
+    Create an Item and store it in the database
+    """
+    print(patinoire_request)
+    db_item = PatinoireRepo.fetch_by_id(db, patinoire_request.id)
+    if db_item:
+        raise HTTPException(status_code=400, detail="Item already exists!")
+
+    return await PatinoireRepo.create(db=db, patinoire=patinoire_request)
+
 @app.post('/items', tags=["Item"], response_model=schemas.Item, status_code=201)
 async def create_item(item_request: schemas.ItemCreate, db: Session = Depends(get_db)):
     """
     Create an Item and store it in the database
     """
-
     db_item = ItemRepo.fetch_by_name(db, name=item_request.name)
     if db_item:
         raise HTTPException(status_code=400, detail="Item already exists!")
@@ -120,7 +131,6 @@ async def update_item(item_id: int, item_request: schemas.Item, db: Session = De
         return await ItemRepo.update(db=db, item_data=db_item)
     else:
         raise HTTPException(status_code=400, detail="Item not found with the given ID")
-
 
 if __name__ == "__main__":
     uvicorn.run("main:app", port=8000, reload=True)

@@ -6,7 +6,7 @@ from . import models, schemas
 class ItemRepo:
 
     async def create(db: Session, item: schemas.ItemCreate):
-        db_item = models.Item(name=item.name, price=item.price, description=item.description, store_id=item.store_id)
+        db_item = models.Item(name=item.name, price=item.price, description=item.description)
         db.add(db_item)
         db.commit()
         db.refresh(db_item)
@@ -47,7 +47,7 @@ class PatinoireRepo:
         return db.query(models.Patinoire).filter(models.Patinoire.nom == nom).first()
 
     def fetch_all(db: Session, skip: int = 0, limit: int = 100):
-        return db.query(models.Patinoire).offset(skip).limit(limit).all()
+        return db.query(models.Patinoire).offset(skip).all()
 
     async def delete(db: Session, patinoire_id):
         db_patinoire = db.query(models.Patinoire).filter_by(id=patinoire_id).first()

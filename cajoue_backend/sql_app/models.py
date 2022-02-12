@@ -25,7 +25,7 @@ class Patinoire(Base):
     adresse = Column(String(100))
     lat = Column(Float, nullable=False)
     lng = Column(Float, nullable=False)
-    ouvert = Column(Boolean, nullable=False)
+    ouvert = Column(Boolean)
     jeu = Column(Boolean, nullable=False)
 
     def __repr__(self):

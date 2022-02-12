@@ -21,14 +21,14 @@ class Item(ItemBase):
 
 class PatinoireBase(BaseModel):
     id: int
-    nom: str
-    genre: str
-    description: str
-    adresse: str
+    nom: Optional[str] = ""
+    genre: Optional[str] = ""
+    description: Optional[str] = ""
+    adresse: Optional[str] = ""
     lat: float
     lng: float
-    ouvert: bool
-    jeu: bool
+    ouvert: Optional[bool] = None
+    jeu: bool = False
 
 class PatinoireCreate(PatinoireBase):
     pass
