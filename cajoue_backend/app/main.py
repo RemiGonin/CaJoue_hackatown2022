@@ -1,11 +1,10 @@
 from fastapi import Depends, FastAPI, HTTPException
 from fastapi.responses import JSONResponse
-from sql_app import models
-from db import get_db, engine
-import sql_app.models as models
-import sql_app.schemas as schemas
-from sql_app.repositories import ItemRepo
-from sql_app.repositories import PatinoireRepo
+from app.db import get_db, engine
+import app.sql_app.models as models
+import app.sql_app.schemas as schemas
+from app.sql_app.repositories import ItemRepo
+from app.sql_app.repositories import PatinoireRepo
 from sqlalchemy.orm import Session
 import uvicorn
 from typing import List, Optional
@@ -27,7 +26,6 @@ def validation_exception_handler(request, err):
 @app.get('/patinoires', tags=["Patinoire"], response_model=List[schemas.Patinoire])
 def get_all_patinoires(db: Session = Depends(get_db)):
     return PatinoireRepo.fetch_all(db)
-
 
 @app.get('/patinoires/{patinoire_id}', tags=["Patinoire"], response_model=schemas.Patinoire)
 def get_patinoire(patinoire_id: int, db: Session = Depends(get_db)):

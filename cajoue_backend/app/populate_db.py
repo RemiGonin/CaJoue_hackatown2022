@@ -1,6 +1,6 @@
 import requests
 import json
-import sql_app.schemas as schemas
+import app.sql_app.schemas as schemas
 
 def populate_db(file):
     with open(file, 'r') as f:
