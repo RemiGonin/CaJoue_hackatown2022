@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: cajoue
+  labels:
+    app: cajoue
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 8000
+    targetPort: 8000
+    protocol: TCP
+    name: http
+  selector:
+    app: cajoue
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cajoue-deployment
+  labels:
+    app: cajoue
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cajoue
+  template:
+    metadata:
+      labels:
+        app: cajoue
+    spec:
+      containers:
+      - name: cajoue
+        image: averd/cajoue
+        ports:
+        - containerPort: 8000
