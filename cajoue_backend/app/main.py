@@ -45,6 +45,7 @@ def get_patinoire(patinoire_id: int, db: Session = Depends(get_db)):
 async def cajoue_patinoire(patinoire_id: int, duration: Optional[int] = 30, db: Session = Depends(get_db)):
     db_patinoire = PatinoireRepo.fetch_by_id(db, patinoire_id)
     if db_patinoire:
+        db_patinoire.ouvert = True
         db_patinoire.jeu = time.time() + duration*60
         return await PatinoireRepo.update(db=db, patinoire_data=db_patinoire)
     else:
