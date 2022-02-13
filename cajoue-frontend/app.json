@@ -1,0 +1,40 @@
+{
+  "expo": {
+    "name": "CaJoue",
+    "slug": "CaJoue",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/markerCaJoue.png",
+    "splash": {
+      "image": "./assets/markerFerme.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/markerCaJouePas.png",
+        "backgroundColor": "#FFFFFF"
+      },
+      "package": "CaJoue.apk"
+    },
+    "web": {
+      "favicon": "./assets/markerCaJoue.png"
+    }
+  },
+  "ios": {
+    "supportsTablet": true,
+    "bundleIdentifier": "CaJoue",
+    "config": {
+      "googleMapsApiKey": "AIzaSyDQ3jwopNczdy59Igk6Zx8F60mydKt3szA"
+    }
+  }
+}
