@@ -51,7 +51,7 @@ async def cajoue_patinoire(patinoire_id: int, duration: Optional[int] = 30, db: 
     else:
         raise HTTPException(status_code=400, detail="Patinoire not found with the given ID")
 
-@app.put('/patinoires/{patinoire_id/cajoueplus', tags=["Patinoire"], response_model=schemas.Patinoire)
+@app.put('/patinoires/{patinoire_id}/cajoueplus', tags=["Patinoire"], response_model=schemas.Patinoire)
 async def cajoue_plus_patinoire(patinoire_id: int, db: Session = Depends(get_db)):
     db_patinoire = PatinoireRepo.fetch_by_id(db, patinoire_id)
     if db_patinoire:
